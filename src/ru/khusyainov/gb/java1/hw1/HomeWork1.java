@@ -6,62 +6,62 @@ public class HomeWork1 {
 
         System.out.println();
 
-        secondTask();
+        primitivesInitialization();
 
         System.out.println();
 
         int a = 1, b = 5, c = 27, d = 9;
-        showResultOfThirdTask(a, b, c, d);
+        printResultOfThirdTask(a, b, c, d);
         c = 20;
         d = 19;
-        showResultOfThirdTask(a, b, c, d);
+        printResultOfThirdTask(a, b, c, d);
         System.out.println("\t\tIt's because of rounding to integers.");
-        showResultOfThirdTaskFloat(a, b, c, d);
+        printResultOfThirdTaskFloat(a, b, c, d);
         System.out.println("\t\tIt's more precisely - rounding to float.");
 
         System.out.println();
 
-        showResultOfFourthTask(a, b);
+        printIsSumWithin10And20(a, b);
         d = 15;
-        showResultOfFourthTask(a, d);
-        showResultOfFourthTask(c, d);
+        printIsSumWithin10And20(a, d);
+        printIsSumWithin10And20(c, d);
         d = -150;
-        showResultOfFourthTask(c, d);
+        printIsSumWithin10And20(c, d);
 
         System.out.println();
 
-        fifthTask(a);
-        fifthTask(b);
-        fifthTask(d);
-        fifthTask(0);
+        printIsPositiveOrNegativeOrZero(a);
+        printIsPositiveOrNegativeOrZero(b);
+        printIsPositiveOrNegativeOrZero(d);
+        printIsPositiveOrNegativeOrZero(0);
 
         System.out.println();
 
-        showResultOfSixthTask(a);
-        showResultOfSixthTask(b);
-        showResultOfSixthTask(d);
-        showResultOfSixthTask(0);
+        printIsNegative(a);
+        printIsNegative(b);
+        printIsNegative(d);
+        printIsNegative(0);
 
         System.out.println();
 
-        sayHi("Антон");
-        sayHi("Айрат");
-        sayHi("Альбина");
+        printHiTo("Антон");
+        printHiTo("Айрат");
+        printHiTo("Альбина");
 
         System.out.println();
 
-        checkLeapYear(1991);
-        checkLeapYear(2000);
-        checkLeapYear(2001);
-        checkLeapYear(2002);
-        checkLeapYear(2024);
-        checkLeapYear(2100);
+        printCheckOnLeapYear(1991);
+        printCheckOnLeapYear(2000);
+        printCheckOnLeapYear(2001);
+        printCheckOnLeapYear(2002);
+        printCheckOnLeapYear(2024);
+        printCheckOnLeapYear(2100);
     }
 
     /**
      * Создать переменные всех пройденных типов данных, и инициализировать их значения.
      */
-    public static void secondTask() {
+    public static void primitivesInitialization() {
         byte byteValueMaximum = 127;
         byte byteValueMinimum = -128;
         byte byteValue1 = 15;
@@ -185,7 +185,7 @@ public class HomeWork1 {
      * Вывод в консоль формулы с подставленными входными значения и результатом метода
      * {@link #thirdTask(int, int, int, int)}.
      */
-    private static void showResultOfThirdTask(int a, int b, int c, int d) {
+    private static void printResultOfThirdTask(int a, int b, int c, int d) {
         System.out.println(a + " * (" + b + " + (" + c + " / " + d + ")) = " + thirdTask(a, b, c, d) + ".");
     }
 
@@ -193,7 +193,7 @@ public class HomeWork1 {
      * Вывод в консоль формулы с подставленными входными значения и результатом метода
      * {@link #thirdTaskFloat(int, int, int, int)}.
      */
-    public static void showResultOfThirdTaskFloat(int a, int b, int c, int d) {
+    public static void printResultOfThirdTaskFloat(int a, int b, int c, int d) {
         System.out.println(a + " * (" + b + " + (" + c + " / " + d + ")) = " + thirdTaskFloat(a, b, c, d) + ".");
     }
 
@@ -202,16 +202,16 @@ public class HomeWork1 {
      * от 10 до 20 (включительно), если да – вернуть true, в противном случае – false.
      * @return True, если 10 <= a + b <= 20. Иначе - false.
      */
-    public static boolean fourthTask(int a, int b) {
+    public static boolean isSumWithin10And20(int a, int b) {
         return a + b >= 10 && a + b <= 20;
     }
 
     /**
      * Вывод в консоль формулы с подставленными значениями входных параметров и заключением
-     * по результату метода {@link #fourthTask(int, int)}.
+     * по результату метода {@link #isSumWithin10And20(int, int)}.
      */
-    public static void showResultOfFourthTask(int a, int b) {
-        System.out.println("The sum of " + a + " and " + b + " ( =" + (a + b) + " ) " + (fourthTask(a, b) ? "" : "not ") +
+    public static void printIsSumWithin10And20(int a, int b) {
+        System.out.println("The sum of " + a + " and " + b + " ( =" + (a + b) + " ) " + (isSumWithin10And20(a, b) ? "" : "not ") +
                 "lies between 10 and to 20.");
     }
 
@@ -219,7 +219,7 @@ public class HomeWork1 {
      * Написать метод, которому в качестве параметра передается целое число, метод должен напечатать в консоль
      * положительное ли число передали, или отрицательное. Если передать ноль, то вывести "Введён 0".
      */
-    public static void fifthTask(int a) {
+    public static void printIsPositiveOrNegativeOrZero(int a) {
         if (a == 0) {
             System.out.println("Transferred 0.");
         } else if (a < 0) {
@@ -241,7 +241,7 @@ public class HomeWork1 {
     /**
      * Вывод в консоль описание результата метода {@link #isNegative(int)}.
      */
-    public static void showResultOfSixthTask(int a) {
+    public static void printIsNegative(int a) {
         System.out.println((isNegative(a) ? "N" : "Non-n") + "egative number: " + a);
     }
 
@@ -249,7 +249,7 @@ public class HomeWork1 {
      * Написать метод, которому в качестве параметра передается строка, обозначающая имя, метод должен
      * вывести в консоль сообщение «Привет, указанное_имя!».
      */
-    public static void sayHi(String toName) {
+    public static void printHiTo(String toName) {
         System.out.println("Привет, " + toName + "!");
     }
 
@@ -257,7 +257,7 @@ public class HomeWork1 {
      * * Написать метод, который определяет, является ли год високосным, и выводит сообщение в консоль.
      * Каждый 4-й год является високосным, кроме каждого 100-го, при этом каждый 400-й – високосный.
      */
-    public static void checkLeapYear(int year) {
+    public static void printCheckOnLeapYear(int year) {
         System.out.println(year + " is " +
                 (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0) ? "" : "not ") +
                 "a leap year");
