@@ -33,6 +33,7 @@ public class HomeWork2 {
         printArrayAndCheckBalance(new int[]{10, 10});
         printArrayAndCheckBalance(new int[]{5, 5, 5, 5, 10});
         printArrayAndCheckBalance(new int[]{10, 5, 5, 5, 10});
+        printArrayAndCheckBalance(new int[]{10, 5, 5, 5, 25});
         printArrayAndCheckBalance(new int[]{10, 5, 5, 5, 10, 5});
         printArrayAndCheckBalance(new int[]{7, 8, 55, 55, 10, 5});
         printArrayAndCheckBalance(new int[]{8, 8, 54, 55, 10, 5});
