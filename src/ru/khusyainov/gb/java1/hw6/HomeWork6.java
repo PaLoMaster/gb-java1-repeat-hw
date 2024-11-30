@@ -1,18 +1,12 @@
 package ru.khusyainov.gb.java1.hw6;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class HomeWork6 {
-    enum Limits {
-        RUN,
-        JUMP,
-        SWIM
-    }
-
     static Number[] dogsMinimumLimits = {300, 0.3f, 8};
     static Number[] catsMinimumLimits = {100, 1.8f, 1};
-    static Number[] dogsCatsLimitSteps = {50, 0.1f, 1};
-    static int[] dogsCatsLimitStepsCounts = {6, 5, 3};
+    static Number[] dogsCatsLimitsDispersion = {300, 0.5f, 3};
     static Random random = new Random();
     static int animalsLimit = 10;
     static int testsLimit = 5;
@@ -23,77 +17,60 @@ public class HomeWork6 {
         Dog[] dogs = new Dog[dogsCount];
         Cat[] cats = new Cat[catsCount];
         System.out.println(dogsCount + " dogs creating: ");
+        int runDistance;
+        float jumpHeight;
+        int swimDistance;
         for (int i = 0; i < dogsCount; i++) {
-            dogs[i] = new Dog("Dog " + (i + 1), getDogsRandomRunDistance(), getDogsRandomJumpHeight(),
-                    getDogsRandomSwimDistance());
+            runDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.RUN);
+            jumpHeight = getFloatRandom(dogsMinimumLimits);
+            swimDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.SWIM);
+            dogs[i] = new Dog("Dog " + (i + 1), runDistance, jumpHeight, swimDistance);
             dogs[i].printInfo();
         }
         System.out.println("\nDogs testing:");
-        int testsCount = random.nextInt(testsLimit);
+        int testsCount = random.nextInt(testsLimit) + 1;
         for (int i = 0; i < testsCount; i++) {
-            testAnimals(dogs, getDogsRandomRunDistance(), getDogsRandomJumpHeight(), getDogsRandomSwimDistance());
+            runDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.RUN);
+            jumpHeight = getFloatRandom(dogsMinimumLimits);
+            swimDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.SWIM);
+            testAnimals(dogs, runDistance, jumpHeight, swimDistance);
         }
         System.out.println("\n\n" + catsCount + " cats creating:");
         for (int i = 0; i < catsCount; i++) {
-            cats[i] = new Cat("Cat " + (i + 1), getCatsRandomRunDistance(), getCatsRandomJumpHeight(),
-                    getCatsRandomSwimDistance());
+            runDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.RUN);
+            jumpHeight = getFloatRandom(dogsMinimumLimits);
+            swimDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.SWIM);
+            cats[i] = new Cat("Cat " + (i + 1), runDistance, jumpHeight, swimDistance);
             cats[i].printInfo();
         }
         System.out.println("\nCats testing:");
-        testAnimals(cats, getCatsRandomRunDistance(), getCatsRandomJumpHeight(), getCatsRandomSwimDistance());
-    }
-
-    static void testAnimals(Animal[] animals, int runDistance, float jumpHeight, int swimDistance) {
-        System.out.println("\tRunning " + runDistance + ", jumping " + jumpHeight + ", swimming " + swimDistance + ":");
-        for (Animal animal : animals) {
-            animal.run(runDistance);
-            animal.jump(jumpHeight);
-            animal.swim(swimDistance);
+        testsCount = random.nextInt(testsLimit) + 1;
+        for (int i = 0; i < testsCount; i++) {
+            runDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.RUN);
+            jumpHeight = getFloatRandom(dogsMinimumLimits);
+            swimDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.SWIM);
+            testAnimals(cats, runDistance, jumpHeight, swimDistance);
         }
     }
 
-    private static int getRandomRunDistance(int minimum, int limitsIndex) {
-        return minimum + dogsCatsLimitSteps[limitsIndex].intValue() *
-                random.nextInt(dogsCatsLimitStepsCounts[limitsIndex]);
+    static void testAnimals(Animal[] animals, int runDistance, float jumpHeight, int swimDistance) {
+        System.out.println("\tRunning " + runDistance + ":");
+        Arrays.stream(animals).forEach(animal -> animal.run(runDistance));
+        System.out.println("\tJumping " + jumpHeight + ":");
+        Arrays.stream(animals).forEach(animal -> animal.jump(jumpHeight));
+        System.out.println("\tSwimming " + swimDistance + ":");
+        Arrays.stream(animals).forEach(animal -> animal.swim(swimDistance));
     }
 
-    private static int getDogsRandomRunDistance() {
-        int limitsIndex = Limits.RUN.ordinal();
-        return getRandomRunDistance(dogsMinimumLimits[limitsIndex].intValue(), limitsIndex);
+    static int getIntegerRandom(Number[] animalMinimumLimits, AnimalLimitsType animalLimitsType) {
+        int limitIndex = animalLimitsType.ordinal();
+        return animalMinimumLimits[limitIndex].intValue() +
+                random.nextInt(dogsCatsLimitsDispersion[limitIndex].intValue());
     }
 
-    private static int getCatsRandomRunDistance() {
-        int limitsIndex = Limits.RUN.ordinal();
-        return getRandomRunDistance(catsMinimumLimits[limitsIndex].intValue(), limitsIndex);
-    }
-
-    private static float getRandomJumpHeight(float minimum, int limitsIndex) {
-        return minimum + dogsCatsLimitSteps[limitsIndex].floatValue() *
-                random.nextInt(dogsCatsLimitStepsCounts[limitsIndex]);
-    }
-
-    private static float getDogsRandomJumpHeight() {
-        int limitsIndex = Limits.JUMP.ordinal();
-        return getRandomJumpHeight(dogsMinimumLimits[limitsIndex].floatValue(), limitsIndex);
-    }
-
-    private static float getCatsRandomJumpHeight() {
-        int limitsIndex = Limits.JUMP.ordinal();
-        return getRandomJumpHeight(catsMinimumLimits[limitsIndex].floatValue(), limitsIndex);
-    }
-
-    private static int getRandomSwimDistance(int minimum, int limitsIndex) {
-        return minimum + dogsCatsLimitSteps[limitsIndex].intValue() *
-                random.nextInt(dogsCatsLimitStepsCounts[limitsIndex]);
-    }
-
-    private static int getDogsRandomSwimDistance() {
-        int limitsIndex = Limits.SWIM.ordinal();
-        return getRandomSwimDistance(dogsMinimumLimits[limitsIndex].intValue(), limitsIndex);
-    }
-
-    private static int getCatsRandomSwimDistance() {
-        int limitsIndex = Limits.SWIM.ordinal();
-        return getRandomSwimDistance(catsMinimumLimits[limitsIndex].intValue(), limitsIndex);
+    static float getFloatRandom(Number[] animalMinimumLimits) {
+        int limitIndex = AnimalLimitsType.JUMP.ordinal();
+        return animalMinimumLimits[limitIndex].floatValue() +
+                random.nextFloat(dogsCatsLimitsDispersion[limitIndex].floatValue());
     }
 }
