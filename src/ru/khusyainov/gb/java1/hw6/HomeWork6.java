@@ -37,18 +37,18 @@ public class HomeWork6 {
         }
         System.out.println("\n\n" + catsCount + " cats creating:");
         for (int i = 0; i < catsCount; i++) {
-            runDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.RUN);
-            jumpHeight = getFloatRandom(dogsMinimumLimits);
-            swimDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.SWIM);
+            runDistance = getIntegerRandom(catsMinimumLimits, AnimalLimitsType.RUN);
+            jumpHeight = getFloatRandom(catsMinimumLimits);
+            swimDistance = getIntegerRandom(catsMinimumLimits, AnimalLimitsType.SWIM);
             cats[i] = new Cat("Cat " + (i + 1), runDistance, jumpHeight, swimDistance);
             cats[i].printInfo();
         }
         System.out.println("\nCats testing:");
         testsCount = random.nextInt(testsLimit) + 1;
         for (int i = 0; i < testsCount; i++) {
-            runDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.RUN);
-            jumpHeight = getFloatRandom(dogsMinimumLimits);
-            swimDistance = getIntegerRandom(dogsMinimumLimits, AnimalLimitsType.SWIM);
+            runDistance = getIntegerRandom(catsMinimumLimits, AnimalLimitsType.RUN);
+            jumpHeight = getFloatRandom(catsMinimumLimits);
+            swimDistance = getIntegerRandom(catsMinimumLimits, AnimalLimitsType.SWIM);
             testAnimals(cats, runDistance, jumpHeight, swimDistance);
         }
     }
